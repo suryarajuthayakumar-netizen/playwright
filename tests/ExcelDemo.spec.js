@@ -41,7 +41,7 @@ async function readExcelFile(worksheet,searchvalue){
 }
 writeExcelFile("C:/Users/ASUS/Downloads/Obsqura Testing.xlsx","Bruno Nash","India",2)
 
-await page.goto("https://tiiny.host/")
+/*await page.goto("https://tiiny.host/")
 await page.getByRole('button',{name:'Upload file'}).last().click()
 await page.waitForTimeout(3000)
 const fileChooserPromise=page.waitForEvent('filechooser')
@@ -50,6 +50,15 @@ const filechooser=await fileChooserPromise
 await filechooser.setFiles(systemDownloadFolder)
 await page.waitForTimeout(3000)
 console.log(`Excel uploaded successfully to: ${systemDownloadFolder}`)
+await page.waitForTimeout(3000)*/
+
+await page.goto("https://the-internet.herokuapp.com/upload")
+//await page.waitForTimeout(3000)
+await page.locator('#file-upload').setInputFiles(systemDownloadFolder)
 await page.waitForTimeout(3000)
+await page.locator("#file-submit").click()
+//await page.waitForTimeout(3000)
+await expect(page.locator("#uploaded-files")).toContainText("Obsqura Testing.xlsx")
+//await page.pause()
     }
 )
